@@ -1,4 +1,7 @@
-Inicio (Despliegue de datos)
+@if(Session::has('mensaje')){{
+    Session::get('mensaje')
+}}
+@endif
 
 <table class="table table-light">
     <thead>
@@ -19,12 +22,15 @@ Inicio (Despliegue de datos)
             <td>{{ $usuario-> ApPaterno }}</td>
             <td>{{ $usuario-> ApMaterno }}</td>
             <td>{{ $usuario-> correo }}</td>
-            <td>Editar | 
+            <td>
+                <a href="{{ url('/usuarios/' .$usuario->id. '/edit') }}">
+                    Editar        
+                </a>
                 
                 <form action="{{ url('/usuarios/' .$usuario->id) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="submit" onclick="return confirm('¿Borrar?');" >Borrar</button>
+                    <button type="submit" onclick="return confirm('¿Borrar?');" >BORRAR</button>
                 </form>
             </td>
         </tr>

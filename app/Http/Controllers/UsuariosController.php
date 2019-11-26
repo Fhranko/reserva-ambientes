@@ -15,7 +15,6 @@ class UsuariosController extends Controller
     public function index()
     {
         $datos['usuarios'] = Usuarios::paginate(10);
-
         return view('usuarios.index', $datos);
     }
 
@@ -42,6 +41,7 @@ class UsuariosController extends Controller
         $datosUsuario = request()->except('_token');
         // return response()->json($datosUsuario);
         usuarios::insert($datosUsuario);
+        return redirect('usuarios')->with('mensaje', 'Usuario Agregado Con Exito');
     }
 
     /**
@@ -61,9 +61,10 @@ class UsuariosController extends Controller
      * @param  \App\usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function edit(usuarios $usuarios)
+    public function edit($id)
     {
-        //
+        $usuario = Usuarios::FindOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
     }
 
     /**
@@ -73,9 +74,15 @@ class UsuariosController extends Controller
      * @param  \App\usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, usuarios $usuarios)
+    public function update(Request $request, $id)
     {
-        //
+        $datosUsuario = request()->except(['_token', '_method']);
+        Usuarios::where('id', '=', $id)->update($datosUsuario);
+
+        // $usuario = Usuarios::FindOrFail($id);
+        // return redirect('usuarios');
+
+        return redirect('usuarios')->with('mensaje', 'Usuario Modificado Correctamente');
     }
 
     /**
