@@ -21,8 +21,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     //Cambiando de vista de home a ambientes/crear
     public function index()
     {
-        return view('home');
+        return view('ambientes.crear');
     }
 }

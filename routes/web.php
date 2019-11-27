@@ -1,4 +1,5 @@
 <?php
+use App\Ambiente;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+
+
+
+//Pruebas para ambientes
+Route::get('pruebasAmbientes', function(){
+
+    $ambientes = Ambiente::where('capacidad_ambiente','46')->get();
+    dd($ambientes);
+});
+
+//Pruebas rutas 
+Route::get('prueba', function(){
+    $ambientes = Ambiente::where('capacidad_ambiente', '39')->first();
+    return view('pruebas/pruebas')->with('ambientes', $ambientes->nombre_ambiente);
+});
