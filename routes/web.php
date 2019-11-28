@@ -32,6 +32,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
+//RUTAS PARA AMBIENTES
+Route::get('ambientes', 'AmbientesController@index');
+Route::get('ambientes/crear', 'AmbientesController@create');
+Route::get('ambientes/{ambiente}/editar', 'AmbientesController@edit')->name('ambientes.edit');
+
+
 
 
 

@@ -25,6 +25,6 @@ class HomeController extends Controller
      //Cambiando de vista de home a ambientes/crear
     public function index()
     {
-        return view('ambientes.crear');
+        return view('ambientes.mostrar') ;
     }
 }
