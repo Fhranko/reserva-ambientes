@@ -15,8 +15,6 @@ class CrearTablaAmbientes extends Migration
     {
         Schema::create('ambientes', function (Blueprint $table) {
             $table->bigIncrements('id_ambiente');
-            $table->timestamps();
-
             $table->string('nombre_ambiente');
             $table->string('oficina_ambiente');
             $table->integer('capacidad_ambiente');

@@ -36,6 +36,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('ambientes', 'AmbientesController@index');
 Route::get('ambientes/crear', 'AmbientesController@create');
 Route::get('ambientes/{ambiente}/editar', 'AmbientesController@edit')->name('ambientes.edit');
+// Route::put('ambientes/{id_ambiente}', 'AmbientesController@update');
+Route::match(['put', 'patch'],'ambientes/{ambiente}', 'AmbientesController@update');
 
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Ambiente;
+
 class HomeController extends Controller
 {
     /**
@@ -25,6 +27,7 @@ class HomeController extends Controller
      //Cambiando de vista de home a ambientes/crear
     public function index()
     {
-        return view('ambientes.mostrar') ;
+        $ambientes = Ambiente::get();
+        return view('ambientes.mostrar', compact('ambientes')) ;
     }
 }

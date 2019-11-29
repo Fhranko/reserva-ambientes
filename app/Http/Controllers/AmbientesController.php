@@ -62,7 +62,7 @@ class AmbientesController extends Controller
     public function edit($id)
     {
         //
-        $ambiente= Ambiente::where($id);
+        $ambiente= Ambiente::findOrFail($id);
         return view('ambientes.editar', compact('ambiente'));
     }
 
@@ -75,7 +75,22 @@ class AmbientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $datosAmbiente = request()->except(['_token', '_method']);
+        // $ambiente=Ambiente::find($id);
+        // return $request;
+        // Ambiente::where('id_ambiente', $id)->update($datosAmbiente);
+        
+        return $request;
+
+
+
+        // $ambiente = Ambiente::find($id);
+        // $ambiente->nombre_ambiente = $request->get('nombre_ambiente');
+        // $ambiente->oficina_ambiente = $request->get('oficina_ambiente');
+        // $ambiente->capacidad_ambiente = $request->get('capacidad_ambiente');
+        // $ambiente->save();
+        
+        // return view('ambientes.editar', compact('ambiente'));
     }
 
     /**
