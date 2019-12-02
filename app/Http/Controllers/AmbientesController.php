@@ -39,7 +39,12 @@ class AmbientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ambiente = new Ambiente;
+        $ambiente->nombre_ambiente = $request->input('nombre_ambiente');
+        $ambiente->oficina_ambiente = $request->input('oficina_ambiente');
+        $ambiente->capacidad_ambiente = $request->input('capacidad_ambiente');
+        echo $ambiente->save();
+        return redirect()->route('home');
     }
 
     /**
@@ -75,22 +80,12 @@ class AmbientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $datosAmbiente = request()->except(['_token', '_method']);
-        // $ambiente=Ambiente::find($id);
-        // return $request;
-        // Ambiente::where('id_ambiente', $id)->update($datosAmbiente);
-        
-        return $request;
-
-
-
-        // $ambiente = Ambiente::find($id);
-        // $ambiente->nombre_ambiente = $request->get('nombre_ambiente');
-        // $ambiente->oficina_ambiente = $request->get('oficina_ambiente');
-        // $ambiente->capacidad_ambiente = $request->get('capacidad_ambiente');
-        // $ambiente->save();
-        
-        // return view('ambientes.editar', compact('ambiente'));
+        $ambiente = Ambiente::find($id);
+        $ambiente->nombre_ambiente = $request->get('nombre_ambiente');
+        $ambiente->oficina_ambiente = $request->get('oficina_ambiente');
+        $ambiente->capacidad_ambiente = $request->get('capacidad_ambiente');
+        $ambiente->save();
+        return redirect()->route('ambientes');
     }
 
     /**

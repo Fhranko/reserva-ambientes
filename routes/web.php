@@ -16,9 +16,6 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-// Route::get('/usuario', 'UsuariosController@index');
-
-// Route::get('/usuario/crear', 'UsuariosController@create');
 
 Route::resource('usuarios', 'UsuariosController');
 Auth::routes();
@@ -33,25 +30,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //RUTAS PARA AMBIENTES
-Route::get('ambientes', 'AmbientesController@index');
-Route::get('ambientes/crear', 'AmbientesController@create');
+Route::get('ambientes', 'AmbientesController@index')->name('ambientes');
+Route::get('ambientes/crear', 'AmbientesController@create')->name('ambientes.create');
 Route::get('ambientes/{ambiente}/editar', 'AmbientesController@edit')->name('ambientes.edit');
-// Route::put('ambientes/{id_ambiente}', 'AmbientesController@update');
-Route::match(['put', 'patch'],'ambientes/{ambiente}', 'AmbientesController@update');
-
-
-
-
-
-//Pruebas para ambientes
-Route::get('pruebasAmbientes', function(){
-
-    $ambientes = Ambiente::where('capacidad_ambiente','46')->get();
-    dd($ambientes);
-});
-
-//Pruebas rutas 
-Route::get('prueba', function(){
-    $ambientes = Ambiente::where('capacidad_ambiente', '39')->first();
-    return view('pruebas/pruebas')->with('ambientes', $ambientes->nombre_ambiente);
-});
+Route::patch('ambientes/{ambiente}', 'AmbientesController@update')->name('ambientes.update');
+Route::post('ambientes/guardar', 'AmbientesController@store')->name('ambientes.store');
