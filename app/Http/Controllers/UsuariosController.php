@@ -36,10 +36,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        // $datosUsuario = request()->all();
-
         $datosUsuario = request()->except('_token');
-        // return response()->json($datosUsuario);
         usuarios::insert($datosUsuario);
         return redirect('usuarios')->with('mensaje', 'Usuario Agregado Con Exito');
     }

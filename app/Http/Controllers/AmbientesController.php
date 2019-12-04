@@ -96,6 +96,13 @@ class AmbientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ambiente::destroy($id);
+        return redirect()->route("ambientes");
+
+    }
+
+    public function reserva($id){
+        $ambiente = Ambiente::findOrFail($id);
+        return view('ambientes.reservar', compact('ambiente'));
     }
 }

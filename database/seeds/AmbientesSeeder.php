@@ -18,7 +18,8 @@ class AmbientesSeeder extends Seeder
             \DB::table('ambientes')->insert(array(
             'nombre_ambiente' => $faker->firstNameMale,
             'oficina_ambiente' => $faker->streetAddress,
-            'capacidad_ambiente' => $faker->numberBetween($min=10, $max=50)
+            'capacidad_ambiente' => $faker->numberBetween($min=10, $max=50),
+            'descripción_ambiente' => $faker->text($maxNbChars = 100)
             ));
         }
     }

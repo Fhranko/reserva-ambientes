@@ -35,3 +35,5 @@ Route::get('ambientes/crear', 'AmbientesController@create')->name('ambientes.cre
 Route::get('ambientes/{ambiente}/editar', 'AmbientesController@edit')->name('ambientes.edit');
 Route::patch('ambientes/{ambiente}', 'AmbientesController@update')->name('ambientes.update');
 Route::post('ambientes/guardar', 'AmbientesController@store')->name('ambientes.store');
+Route::delete('ambientes/{ambiente}', 'AmbientesController@destroy') -> name('ambientes.destroy');
+Route::get('ambientes/reserva/{id}', 'AmbientesController@reserva')->name('ambientes.reserva');

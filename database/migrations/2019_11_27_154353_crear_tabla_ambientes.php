@@ -18,6 +18,7 @@ class CrearTablaAmbientes extends Migration
             $table->string('nombre_ambiente');
             $table->string('oficina_ambiente');
             $table->integer('capacidad_ambiente');
+            $table->text('descripción_ambiente');
         });
     }
 
