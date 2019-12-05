@@ -84,6 +84,5 @@
                     @yield('ambientes')
                 </main>
             </div>
-
 </body>
 </html>

@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Ambiente;
 use App\Reserva;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
-class AmbientesController extends Controller
+class ReservasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +15,7 @@ class AmbientesController extends Controller
      */
     public function index()
     {
-
-        $reservas = Reserva::get();
-        $ambientes = Ambiente::get();
-        return view('ambientes.mostrar')->with('ambientes', $ambientes);
-
+        //
     }
 
     /**
@@ -30,8 +25,6 @@ class AmbientesController extends Controller
      */
     public function create()
     {
-        //
-        return view('ambientes.crear');
     }
 
     /**
@@ -42,12 +35,17 @@ class AmbientesController extends Controller
      */
     public function store(Request $request)
     {
-        $ambiente = new Ambiente;
-        $ambiente->nombre_ambiente = $request->input('nombre_ambiente');
-        $ambiente->oficina_ambiente = $request->input('oficina_ambiente');
-        $ambiente->capacidad_ambiente = $request->input('capacidad_ambiente');
-        echo $ambiente->save();
-        return redirect()->route('home');
+        $reservas = new Reserva;
+        $user = Auth::user();
+        $reservas->id = $user->id;
+        $reservas->id_ambiente = $request->id_ambiente;
+        $reservas->fecha_para_reserva = $request->fecha;
+        $reservas->hora_desde = $request->desde;
+        $reservas->hora_hasta = $request->hasta;
+
+        // $reservas->save();
+        // return back();
+        return $reservas;
     }
 
     /**
@@ -70,8 +68,6 @@ class AmbientesController extends Controller
     public function edit($id)
     {
         //
-        $ambiente= Ambiente::findOrFail($id);
-        return view('ambientes.editar', compact('ambiente'));
     }
 
     /**
@@ -83,12 +79,7 @@ class AmbientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ambiente = Ambiente::find($id);
-        $ambiente->nombre_ambiente = $request->get('nombre_ambiente');
-        $ambiente->oficina_ambiente = $request->get('oficina_ambiente');
-        $ambiente->capacidad_ambiente = $request->get('capacidad_ambiente');
-        $ambiente->save();
-        return redirect()->route('ambientes');
+        //
     }
 
     /**
@@ -99,14 +90,6 @@ class AmbientesController extends Controller
      */
     public function destroy($id)
     {
-        Ambiente::destroy($id);
-        return redirect()->route("ambientes");
-
-    }
-
-    public function reserva($id){
-        $ambiente = Ambiente::findOrFail($id);
-        $reservas = Reserva::get();
-        return view('ambientes.reservar', compact('ambiente', 'reservas'));
+        //
     }
 }

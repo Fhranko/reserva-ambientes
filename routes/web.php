@@ -1,5 +1,6 @@
 <?php
 use App\Ambiente;
+Use App\Reserva;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 
 
@@ -37,3 +38,5 @@ Route::patch('ambientes/{ambiente}', 'AmbientesController@update')->name('ambien
 Route::post('ambientes/guardar', 'AmbientesController@store')->name('ambientes.store');
 Route::delete('ambientes/{ambiente}', 'AmbientesController@destroy') -> name('ambientes.destroy');
 Route::get('ambientes/reserva/{id}', 'AmbientesController@reserva')->name('ambientes.reserva');
+
+Route::resource('reservas', 'ReservasController');

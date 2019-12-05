@@ -15,7 +15,6 @@
                     <a href="{{ '/ambientes/reserva/'. $ambiente->id_ambiente }}" class="btn btn-primary">Reservar</a>
                 </div>
             </div>
-
         </div>
         @endforeach
     </div>
