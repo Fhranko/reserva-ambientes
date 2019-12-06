@@ -16,8 +16,8 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Id Usuario</th>
-                                <th>Id Ambiente</th>
+                                <th>id ambiente</th>
+                                <th>Reservado por</th>
                                 <th>Fecha de la reserva</th>
                                 <th>Desde</th>
                                 <th>Hasta</th>
@@ -25,13 +25,15 @@
                         </thead>
                         <tbody>
                             @foreach ($reservas as $reserva)
-                                <tr>
-                                    <td>{{ $reserva->id }}</td>
-                                    <td>{{ $reserva->id_ambiente }}</td>
-                                    <td>{{ $reserva->fecha_para_reserva }}</td>
-                                    <td>{{ $reserva->hora_desde}}</td>
-                                    <td>{{ $reserva->hora_hasta}}</td>
-                                </tr>
+                                {{-- @if ( $reserva->id_ambiente = $id ) --}}
+                                    <tr>
+                                        <td>{{ $reserva->id_ambiente }}</td>
+                                        <td>{{ $reserva->name }}</td>
+                                        <td>{{ $reserva->fecha_para_reserva }}</td>
+                                        <td>{{ date('HH:MM', ($reserva->hora_desde)->time_start)}}</td>
+                                        <td>{{ $reserva->hora_hasta}}</td>
+                                    </tr>
+                                {{-- @endif --}}
                             @endforeach
                         </tbody>
                     </table>

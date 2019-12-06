@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Ambiente;
 use App\Reserva;
+use App\User;
+
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -87,7 +90,7 @@ class AmbientesController extends Controller
         $ambiente->nombre_ambiente = $request->get('nombre_ambiente');
         $ambiente->oficina_ambiente = $request->get('oficina_ambiente');
         $ambiente->capacidad_ambiente = $request->get('capacidad_ambiente');
-        $ambiente->save();
+        $ambiente-> save();
         return redirect()->route('ambientes');
     }
 
@@ -106,7 +109,17 @@ class AmbientesController extends Controller
 
     public function reserva($id){
         $ambiente = Ambiente::findOrFail($id);
-        $reservas = Reserva::get();
-        return view('ambientes.reservar', compact('ambiente', 'reservas'));
+        // $reservas = Reserva::where('id_ambiente', $ambiente->id_ambiente)->get();
+
+        $reservas = User::join('reservas', 'reservas.id', 'users.id')
+                                ->where('reservas.id_ambiente',$id)
+                                ->get();
+
+        // return  $reservas;
+
+        return view('ambientes.reservar', compact('ambiente', 'reservas', 'id'));
+
+        // $reservado_por = User::where('id', $reservas->id)->name('name');
+        // return $reservas;
     }
 }

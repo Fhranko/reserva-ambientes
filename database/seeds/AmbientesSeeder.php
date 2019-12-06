@@ -14,7 +14,7 @@ class AmbientesSeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 5; $i++) {
             \DB::table('ambientes')->insert(array(
             'nombre_ambiente' => $faker->firstNameMale,
             'oficina_ambiente' => $faker->streetAddress,

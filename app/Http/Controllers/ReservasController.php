@@ -43,9 +43,9 @@ class ReservasController extends Controller
         $reservas->hora_desde = $request->desde;
         $reservas->hora_hasta = $request->hasta;
 
-        // $reservas->save();
-        // return back();
-        return $reservas;
+        $reservas->save();
+        return back();
+        // return $reservas;
     }
 
     /**
