@@ -109,17 +109,11 @@ class AmbientesController extends Controller
 
     public function reserva($id){
         $ambiente = Ambiente::findOrFail($id);
-        // $reservas = Reserva::where('id_ambiente', $ambiente->id_ambiente)->get();
-
         $reservas = User::join('reservas', 'reservas.id', 'users.id')
                                 ->where('reservas.id_ambiente',$id)
+                                ->where('fecha_para_reserva', '>=', date('Y-m-d'))
                                 ->get();
-
-        // return  $reservas;
-
         return view('ambientes.reservar', compact('ambiente', 'reservas', 'id'));
-
-        // $reservado_por = User::where('id', $reservas->id)->name('name');
         // return $reservas;
     }
 }
