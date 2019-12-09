@@ -49,6 +49,8 @@ class AmbientesController extends Controller
         $ambiente->nombre_ambiente = $request->input('nombre_ambiente');
         $ambiente->oficina_ambiente = $request->input('oficina_ambiente');
         $ambiente->capacidad_ambiente = $request->input('capacidad_ambiente');
+        $ambiente->descripcion_ambiente = $request->input('descripcion_ambiente');
+        $ambiente->imagen_ambiente = NULL;
         echo $ambiente->save();
         return redirect()->route('home');
     }
@@ -108,12 +110,16 @@ class AmbientesController extends Controller
     }
 
     public function reserva($id){
-        $ambiente = Ambiente::findOrFail($id);
-        $reservas = User::join('reservas', 'reservas.id', 'users.id')
-                                ->where('reservas.id_ambiente',$id)
-                                ->where('fecha_para_reserva', '>=', date('Y-m-d'))
-                                ->get();
-        return view('ambientes.reservar', compact('ambiente', 'reservas', 'id'));
-        // return $reservas;
+        if (auth()->check()) {
+            $ambiente = Ambiente::findOrFail($id);
+            $reservas = User::join('reservas', 'reservas.id', 'users.id')
+                                    ->where('reservas.id_ambiente',$id)
+                                    ->where('fecha_para_reserva', '>=', date('Y-m-d'))
+                                    ->get();
+            return view('ambientes.reservar', compact('ambiente', 'reservas', 'id'));
+        } else {
+            return view('auth.login');
+        }
+
     }
 }

@@ -23,13 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-
-
-
 //RUTAS PARA AMBIENTES
 Route::get('ambientes', 'AmbientesController@index')->name('ambientes');
 Route::get('ambientes/crear', 'AmbientesController@create')->name('ambientes.create');

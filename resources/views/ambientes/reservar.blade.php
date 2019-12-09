@@ -5,13 +5,13 @@
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
-                <img src="https://picsum.photos/200" class="card-img" alt="imagen del ambiente a reservar">
+                <img src="{{ asset('/images/default-image.jpg') }}" class="card-img" alt="imagen del ambiente a reservar">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Nombre del ambiente: {{ $ambiente->nombre_ambiente }}</h5>
                     <p class="card-text">Descripción del ambiente: {{ $ambiente->descripción_ambiente }}</p>
-                    <p class="card-text"><small class="text-muted">Capacidad del ambiente: {{ $ambiente->capacidad_ambiente }} personas.  </small></p>
+                    <p class="card-text"><small class="text-muted">Capacidad del ambiente: {{ $ambiente->capacidad_ambiente }} personas. </small></p>
                     <h5>Reservas actuales: </h5>
                     @if (!sizeof($reservas) == 0)
                         <table class="table table-hover table-responsive">
@@ -50,11 +50,11 @@
         <div class="form-row d-flex justify-content-center">
             <div class="form-group w-25 p-1">
                 <label for="desde">Desde: </label>
-                <input name="desde" type="time" class="form-control" id="hasta" min="09:00" step="600" required >
+                <input name="desde" type="time" class="form-control" id="hasta" min="09:00" max="19:00" step="600" required >
             </div>
             <div class="form-group w-25 p-1">
                 <label for="hasta">Hasta: </label>
-                <input name="hasta" type="time" class="form-control" id="hasta" max="19:00" step="600" required >
+                <input name="hasta" type="time" class="form-control" id="hasta" min="09:00" max="19:00" step="600" required >
             </div>
         </div>
         <div class="form-row d-flex justify-content-center">
@@ -69,7 +69,5 @@
             <button type="submit" class="btn btn-primary btn-block w-50">Reservar Directamente</button>
         </div>
     </form>
-    {{-- Reservar el ambiente --}}
-
 </div>
 @endsection

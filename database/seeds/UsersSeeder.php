@@ -19,6 +19,7 @@ class UsersSeeder extends Seeder
             'name' => $faker->firstNameMale,
             'email' => $faker->email,
             'email_verified_at'=> NULL,
+            'role'=> $faker->randomElement($array = array ('administrador','usuario')),
             'password' => $faker->randomDigit,
             'remember_token'=> NULL,
             'created_at' => $faker->date('Y-m-d H:m:s'),
