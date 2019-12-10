@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Reserva;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -15,7 +16,10 @@ class ReservasController extends Controller
      */
     public function index()
     {
-        //
+        $reservas = User::join('reservas', 'reservas.id', 'users.id')
+                            ->join('ambientes','ambientes.id_ambiente' , 'reservas.id_ambiente')
+                            ->get();
+        return view('reservas.mostrar', compact('reservas'));
     }
 
     /**
@@ -56,7 +60,6 @@ class ReservasController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

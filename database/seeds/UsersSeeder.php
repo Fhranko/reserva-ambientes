@@ -13,7 +13,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        for ($i=1; $i < 10; $i++) {
+        for ($i=1; $i <= 10; $i++) {
             \DB::table('users')->insert(array(
             'id' => $i ,
             'name' => $faker->firstNameMale,

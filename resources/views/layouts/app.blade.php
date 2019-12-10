@@ -21,7 +21,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
 </head>
 <body>
     <div id="app">
@@ -41,7 +40,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="  navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
 
@@ -52,17 +51,31 @@
                             <!-- Authentication Links -->
                             @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}"> {{ __('Entrar') }} </a>
                             </li>
                             @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}"> {{ __('Registrarse') }} </a>
                             </li>
                             @endif
                             @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('ambientes.create') }}">Registrar Ambiente</a>
-                            </li>
+
+                            {{-- Acciones de administrador --}}
+
+                            @if ( Auth::user()->role == 'administrador' )
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('ambientes.create') }}">Registrar Ambiente</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('reservas.index') }}">Historial de reservas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Editar/Eliminar Usuarios</a>
+                                </li>
+                            @endif
+
+                            {{-- End Acciones de administrador --}}
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -85,7 +98,7 @@
                         </div>
                     </div>
                 </nav>
-
+                {{-- <h3 class="text-center" >{{Auth::user()->role}}</h3> --}}
                 <main class="py-4">
                     @yield('content')
                     @yield('ambientes')

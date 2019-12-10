@@ -10,7 +10,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Nombre del ambiente: {{ $ambiente->nombre_ambiente }}</h5>
-                    <p class="card-text">Descripción del ambiente: {{ $ambiente->descripción_ambiente }}</p>
+                    <p class="card-text">Descripción del ambiente: {{ $ambiente->descripcion_ambiente }}</p>
                     <p class="card-text"><small class="text-muted">Capacidad del ambiente: {{ $ambiente->capacidad_ambiente }} personas. </small></p>
                     <h5>Reservas actuales: </h5>
                     @if (!sizeof($reservas) == 0)

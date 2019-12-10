@@ -15,10 +15,10 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('users');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('id_ambiente');
-            $table->foreign('id_ambiente')->references('id_ambiente')->on('ambientes');
+            $table->foreign('id_ambiente')->references('id_ambiente')->on('ambientes')->onDelete('cascade');
 
 
             $table->date('fecha_para_reserva');

@@ -33,3 +33,19 @@ Vue.component(
 const app = new Vue({
   el: "#app"
 });
+
+$(document).ready(function() {
+    $('#tabla-datos').DataTable({
+        language: {
+            search: "Buscar: ",
+            info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
+            lengthMenu: "Mostrando _MENU_ registros",
+            paginate: {
+                first:      "Primero",
+                last:       "Ultimo",
+                next:       "Siguiente",
+                previous:   "Anterior"
+            },
+        }
+    });
+} );

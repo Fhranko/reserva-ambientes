@@ -65,7 +65,7 @@
                             <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
 
                             <div class="col-md-6">
-                                <input id="role" type="text" class="form-control" name="role" value="usuario" disabled>
+                                <input id="role" type="text" class="form-control" name="role" value="usuario" readonly>
                             </div>
                         </div>
                         {{-- END AGREGANDO ROLE PARA LOS USUARIOS --}}
