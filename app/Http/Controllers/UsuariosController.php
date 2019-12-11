@@ -26,7 +26,7 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        return view('usuarios.create');
+        //
     }
 
     /**
@@ -37,9 +37,7 @@ class UsuariosController extends Controller
      */
     public function store(Request $request)
     {
-        $datosUsuario = request()->except('_token');
-        usuarios::insert($datosUsuario);
-        return redirect('usuarios')->with('mensaje', 'Usuario Agregado Con Exito');
+        //
     }
 
     /**
@@ -61,7 +59,7 @@ class UsuariosController extends Controller
      */
     public function edit($id)
     {
-        $usuario = Usuarios::FindOrFail($id);
+        $usuario = User::where('id',$id)->first();
         return view('usuarios.edit', compact('usuario'));
     }
 
@@ -75,11 +73,7 @@ class UsuariosController extends Controller
     public function update(Request $request, $id)
     {
         $datosUsuario = request()->except(['_token', '_method']);
-        Usuarios::where('id', '=', $id)->update($datosUsuario);
-
-        // $usuario = Usuarios::FindOrFail($id);
-        // return redirect('usuarios');
-
+        User::where('id', $id)->update($datosUsuario);
         return redirect('usuarios')->with('mensaje', 'Usuario Modificado Correctamente');
     }
 
@@ -91,7 +85,7 @@ class UsuariosController extends Controller
      */
     public function destroy($id)
     {
-        usuarios::destroy($id);
+        User::destroy($id);
         return redirect('usuarios');
     }
 }

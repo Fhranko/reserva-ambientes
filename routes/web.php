@@ -40,8 +40,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::patch('ambientes/{ambiente}', 'AmbientesController@update')->name('ambientes.update');
         Route::post('ambientes/guardar', 'AmbientesController@store')->name('ambientes.store');
         Route::delete('ambientes/{ambiente}', 'AmbientesController@destroy') -> name('ambientes.destroy');
+
+        Route::get('usuarios', 'UsuariosController@index')->name('usuarios.index');
+        Route::get('usuarios/{usuario}/editar', 'UsuariosController@edit')->name('usuarios.edit');
+        Route::match(['put', 'patch'], 'usuarios/{usuario}', 'UsuariosController@update')->name('usuarios.update');
+        Route::delete('usuarios/{usuario}', 'UsuariosController@destroy')->name('usuarios.destroy');
     });
 });
 
 
-Route::get('usuarios', 'UsuariosController@index')->name('usuarios.index');

@@ -24,16 +24,16 @@
         @foreach($usuarios as $usuario)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $usuario-> name }}</td>
-            <td>{{ $usuario-> email }}</td>
-            <td>{{ $usuario-> role }}</td>
-            <td>{{ $usuario-> created_at }}</td>
-            <td>{{ $usuario-> updated_at }}</td>
+            <td>{{ $usuario->name }}</td>
+            <td>{{ $usuario->email }}</td>
+            <td>{{ $usuario->role }}</td>
+            <td>{{ $usuario->created_at }}</td>
+            <td>{{ $usuario->updated_at }}</td>
             <td>
-                <a href="{{ url('/usuarios/' .$usuario->id. '/edit') }}">Editar</a>
+                <a href="{{ route('usuarios.edit', $usuario->id) }}">Editar</a>
             </td>
             <td>
-                <form action="{{ url('/usuarios/' .$usuario->id) }}" method="post">
+                <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button class="btn btn-danger" type="submit" onclick="return confirm('¿Borrar?');" >BORRAR</button>

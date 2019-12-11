@@ -76,7 +76,6 @@ class AmbientesController extends Controller
      */
     public function edit($id)
     {
-        //
         $ambiente= Ambiente::findOrFail($id);
         return view('ambientes.editar', compact('ambiente'));
     }
