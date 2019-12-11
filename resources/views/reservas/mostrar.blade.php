@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <table id="tabla-datos" class="table table-striped table-bordered" style="width:100%">
+    <table id="tabla-datos" class="table table-hover table-responsive">
         <thead>
             <tr>
                 <th>Ambiente</th>

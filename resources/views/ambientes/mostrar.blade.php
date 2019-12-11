@@ -13,9 +13,9 @@
                             {{ $ambiente->descripcion_ambiente}}
                         </p>
                         @if ( Auth::user()->role == 'administrador' )
-                            <a href=" {{ '/ambientes/'. $ambiente->id_ambiente . '/editar'}} " class="btn btn-secondary" > Editar </a>
+                            <a href=" {{ route('ambientes.edit', $ambiente->id_ambiente) }} " class="btn btn-secondary" > Editar </a>
                         @endif
-                        <a href="{{ '/ambientes/reserva/'. $ambiente->id_ambiente }}" class="btn btn-primary">Reservar</a>
+                        <a href="{{ route('ambientes.reserva', $ambiente->id_ambiente) }}" class="btn btn-primary">Reservar</a>
                     </div>
                 </div>
             </div>

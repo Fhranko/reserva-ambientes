@@ -64959,7 +64959,7 @@ var app = new Vue({
   el: "#app"
 });
 $(document).ready(function () {
-  $('#tabla-datos').DataTable({
+  var tabla = $('#tabla-datos').DataTable({
     language: {
       search: "Buscar: ",
       info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",

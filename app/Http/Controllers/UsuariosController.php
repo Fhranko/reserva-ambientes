@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\usuarios;
 use Illuminate\Http\Request;
+use App\User;
 
 class UsuariosController extends Controller
 {
@@ -14,8 +15,8 @@ class UsuariosController extends Controller
      */
     public function index()
     {
-        $datos['usuarios'] = Usuarios::paginate(10);
-        return view('usuarios.index', $datos);
+        $usuarios = User::get();
+        return view('usuarios.index', compact('usuarios') );
     }
 
     /**

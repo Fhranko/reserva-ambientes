@@ -70,7 +70,7 @@
                                     <a class="nav-link" href="{{ route('reservas.index') }}">Historial de reservas</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Editar/Eliminar Usuarios</a>
+                                    <a class="nav-link" href="{{ route('usuarios.index') }}">Editar/Eliminar Usuarios</a>
                                 </li>
                             @endif
 

@@ -12,7 +12,6 @@ class ReservasSeeder extends Seeder
      */
     public function run()
     {
-        //
         $faker = Faker::create();
         for ($i=1; $i <= 20; $i++) {
             \DB::table('reservas')->insert(array(
@@ -23,7 +22,7 @@ class ReservasSeeder extends Seeder
             'hora_hasta' => $faker->time($format = 'H:i:s', $max = 'now'),
             'created_at' => $faker->date('Y-m-d H:m:s'),
             'updated_at' => $faker->date('Y-m-d H:m:s'),
-));
-}
+            ));
+        }
     }
 }

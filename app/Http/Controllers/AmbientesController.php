@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 
 class AmbientesController extends Controller
 {
+    // MIDDLEWARE
+
     /**
      * Display a listing of the resource.
      *
@@ -116,7 +118,7 @@ class AmbientesController extends Controller
                                     ->where('reservas.id_ambiente',$id)
                                     ->where('fecha_para_reserva', '>=', date('Y-m-d'))
                                     ->get();
-            return view('ambientes.reservar', compact('ambiente', 'reservas', 'id'));
+            return view('ambientes.reservar', compact('ambiente', 'reservas'));
         } else {
             return view('auth.login');
         }
