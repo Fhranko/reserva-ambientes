@@ -42,7 +42,8 @@
         </div>
     </div>
     {{-- Verificar la disponobilidad del ambiente --}}
-    <form action="{{ route('reservas.store') }}" method="POST" >
+    {{-- <form action="{{ route('reservas.store') }}" method="POST" > --}}
+    <form action="{{ route('reservas.check', $ambiente->id_ambiente) }}" method="post">
         @csrf
         <h2 class="text-center">Reservar en ambiente</h2>
         <div class="form-row d-flex justify-content-center">
@@ -62,10 +63,12 @@
             </div>
         </div>
         <input name="id_ambiente" type="text" class="d-none" value="{{ $ambiente->id_ambiente }}" >
-        {{-- <button type="submit" class="btn btn-primary btn-block">Verificar Disponibilidad</button> --}}
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-block w-50">Reservar Directamente</button>
+            <button type="submit" class="btn btn-primary btn-block w-50">Verificar Disponibilidad/Reservar Directamente</button>
         </div>
     </form>
+    {{-- <form action="{{ route('reservas.check', $ambiente->id_ambiente) }}" method="get">
+        <button type="submit" class="btn btn-success">Verificar Disponibilidad</button>
+    </form> --}}
 </div>
 @endsection

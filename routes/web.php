@@ -48,4 +48,6 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
+Route::post('reserva/{ambiente}', 'ReservasController@check')->name('reservas.check');
+
 

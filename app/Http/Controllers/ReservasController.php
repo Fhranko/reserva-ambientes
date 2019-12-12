@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Reserva;
 use App\User;
+use App\Ambiente;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -100,5 +101,12 @@ class ReservasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check(Request $request, $id){
+        $datosReservas = Reserva::where('id_ambiente', $id)
+                                ->whereDate('fecha_para_reserva', $request->fecha)
+                                ->exists();
+        return view('pruebas.pruebas', compact('datosReservas'));
     }
 }

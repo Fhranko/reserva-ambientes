@@ -111,16 +111,11 @@ class AmbientesController extends Controller
     }
 
     public function reserva($id){
-        if (auth()->check()) {
-            $ambiente = Ambiente::findOrFail($id);
-            $reservas = User::join('reservas', 'reservas.id', 'users.id')
-                                    ->where('reservas.id_ambiente',$id)
-                                    ->where('fecha_para_reserva', '>=', date('Y-m-d'))
-                                    ->get();
-            return view('ambientes.reservar', compact('ambiente', 'reservas'));
-        } else {
-            return view('auth.login');
-        }
-
+        $ambiente = Ambiente::findOrFail($id);
+        $reservas = User::join('reservas', 'reservas.id', 'users.id')
+                                ->where('reservas.id_ambiente',$id)
+                                ->where('fecha_para_reserva', '>=', date('Y-m-d'))
+                                ->get();
+        return view('ambientes.reservar', compact('ambiente', 'reservas'));
     }
 }
