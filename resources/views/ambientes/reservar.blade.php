@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <div class="container">
 {{-- Card para mostrar datos del ambiente --}}
     <div class="card mb-3">
@@ -49,7 +50,7 @@
         <div class="form-row d-flex justify-content-center">
             <div class="form-group w-25 p-1">
                 <label for="desde">Desde: </label>
-                <input name="desde" type="time" class="form-control" id="hasta" min="09:00" max="19:00" step="600" required >
+                <input name="desde" type="time" class="form-control" id="desde" min="09:00" max="19:00" step="600" required >
             </div>
             <div class="form-group w-25 p-1">
                 <label for="hasta">Hasta: </label>
@@ -64,9 +65,15 @@
         </div>
         <input name="id_ambiente" type="text" class="d-none" value="{{ $ambiente->id_ambiente }}" >
         <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary btn-block w-50">Verificar Disponibilidad/Reservar Directamente</button>
+            <button type="submit" class="btn btn-primary btn-block w-50">Reservar Ambiente</button>
         </div>
     </form>
+    <h1>
+        @if(Session::has('mensaje')){{
+            Session::get('mensaje')
+        }}
+        @endif
+    </h1>
     {{-- <form action="{{ route('reservas.check', $ambiente->id_ambiente) }}" method="get">
         <button type="submit" class="btn btn-success">Verificar Disponibilidad</button>
     </form> --}}

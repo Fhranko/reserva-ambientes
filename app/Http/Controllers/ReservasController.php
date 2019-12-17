@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
+
+
 use App\Reserva;
 use App\User;
 use App\Ambiente;
@@ -56,7 +59,6 @@ class ReservasController extends Controller
 
         $reservas->save();
         return back();
-        // return $reservas;
     }
 
     /**
@@ -104,9 +106,84 @@ class ReservasController extends Controller
     }
 
     public function check(Request $request, $id){
-        $datosReservas = Reserva::where('id_ambiente', $id)
+
+        $reservas = Reserva::where('id_ambiente', $id)
+                                ->where('fecha_para_reserva', '>=', date('Y-m-d'))
                                 ->whereDate('fecha_para_reserva', $request->fecha)
-                                ->exists();
-        return view('pruebas.pruebas', compact('datosReservas'));
+                                ->get();
+
+        $carbonMiDesde = new Carbon($request->desde);
+        $carbonMiHasta = new Carbon($request->hasta);
+
+        if ( !sizeof($reservas) == 0) {
+            foreach ($reservas as $reserva) {
+                $carbonDesde = new Carbon($reserva->hora_desde);
+                $carbonHasta = new Carbon($reserva->hora_hasta);
+
+                $resultadoInicio = $carbonMiDesde->addMinute()->isBetween($carbonDesde, $carbonHasta);
+                $resultadoFin = $carbonMiHasta->subMinute()->isBetween($carbonDesde, $carbonHasta);
+
+
+                if ($resultadoInicio || $resultadoFin) {
+                    return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles');
+                }else {
+                    $reservas = new Reserva;
+                    $reservas->id = Auth::user()->id;
+                    $reservas->id_ambiente = $request->id_ambiente;
+                    $reservas->fecha_para_reserva = $request->fecha;
+                    $reservas->hora_desde = $request->desde;
+                    $reservas->hora_hasta = $request->hasta;
+
+                    $reservas->save();
+                    return back()->with('mensaje', 'Reserva registrada correctamente');
+                }
+            }
+        }else {
+            $reservas = new Reserva;
+            $reservas->id = Auth::user()->id;
+            $reservas->id_ambiente = $request->id_ambiente;
+            $reservas->fecha_para_reserva = $request->fecha;
+            $reservas->hora_desde = $request->desde;
+            $reservas->hora_hasta = $request->hasta;
+
+            $reservas->save();
+            return back()->with('mensaje', 'Reserva registrada correctamente');
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    //     $miReservaDesde = '08:00';
+    //     $miReservaHasta = '10:00';
+    //     $miFechaReserva = '2019-12-12';
+
+    //     $reservas = Reserva::where('id_ambiente', $id)->whereDate('fecha_para_reserva', $miFechaReserva)->first();
+
+    //     $carbonMiDesde = new Carbon($miReservaDesde);
+    //     $carbonMiHasta = new Carbon($miReservaHasta);
+
+    //     $carbonDesde = new Carbon($reservas->hora_desde);
+    //     $carbonHasta = new Carbon($reservas->hora_hasta);
+
+    //     $resultadoInicio = $carbonMiDesde->addMinute()->isBetween($carbonDesde, $carbonHasta);
+    //     $resultadoFin = $carbonMiHasta->subMinute()->isBetween($carbonDesde, $carbonHasta);
+
+
+    //     if ($resultadoInicio) {
+    //         echo 'El horario de INICIO NO esta disponible';
+    //     } elseif ($resultadoFin) {
+    //         echo 'El horario de FIN NO esta disponible';
+    //     } else {
+    //         echo 'Horario completo disponible';
+    //     }
+    // }
 }
