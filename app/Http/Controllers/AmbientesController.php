@@ -21,11 +21,9 @@ class AmbientesController extends Controller
      */
     public function index()
     {
-
         $reservas = Reserva::get();
         $ambientes = Ambiente::get();
         return view('ambientes.mostrar')->with('ambientes', $ambientes);
-
     }
 
     /**
@@ -35,7 +33,6 @@ class AmbientesController extends Controller
      */
     public function create()
     {
-        //
         return view('ambientes.crear');
     }
 

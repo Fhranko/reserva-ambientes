@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::match(['get', 'head'], '/reservas', 'ReservasController@index')->name('reservas.index');
     Route::post('/reservas', 'ReservasController@store')->name('reservas.store');
     Route::match(['get', 'head'], '/reservas/create')->name('reservas.create');
+    Route::post('reserva/{ambiente}', 'ReservasController@check')->name('reservas.check');
 
     Route::group(['middleware' => ['admin']], function () {
         Route::get('ambientes/crear', 'AmbientesController@create')->name('ambientes.create');
@@ -48,6 +49,4 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::post('reserva/{ambiente}', 'ReservasController@check')->name('reservas.check');
-
-
+Route::get('/mis-reservas/{usuario}', 'ReservasController@misReservas')->name('reservas.misReservas');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Carbon\Carbon;
 
-
 use App\Reserva;
 use App\User;
 use App\Ambiente;
@@ -151,39 +150,15 @@ class ReservasController extends Controller
         }
     }
 
+    public function misReservas($id_usuario){
+        $reservas = User::join('reservas', 'reservas.id', 'users.id')
+                            ->join('ambientes','ambientes.id_ambiente' , 'reservas.id_ambiente')
+                            ->where('fecha_para_reserva', '>=', date('Y-m-d'))
+                            ->select('nombre_ambiente','fecha_para_reserva', 'hora_desde', 'hora_hasta' )
+                            ->get();
 
+        return view( 'reservas.misReservas', compact('reservas') );
 
+    }
 
-
-
-
-
-
-
-
-
-    //     $miReservaDesde = '08:00';
-    //     $miReservaHasta = '10:00';
-    //     $miFechaReserva = '2019-12-12';
-
-    //     $reservas = Reserva::where('id_ambiente', $id)->whereDate('fecha_para_reserva', $miFechaReserva)->first();
-
-    //     $carbonMiDesde = new Carbon($miReservaDesde);
-    //     $carbonMiHasta = new Carbon($miReservaHasta);
-
-    //     $carbonDesde = new Carbon($reservas->hora_desde);
-    //     $carbonHasta = new Carbon($reservas->hora_hasta);
-
-    //     $resultadoInicio = $carbonMiDesde->addMinute()->isBetween($carbonDesde, $carbonHasta);
-    //     $resultadoFin = $carbonMiHasta->subMinute()->isBetween($carbonDesde, $carbonHasta);
-
-
-    //     if ($resultadoInicio) {
-    //         echo 'El horario de INICIO NO esta disponible';
-    //     } elseif ($resultadoFin) {
-    //         echo 'El horario de FIN NO esta disponible';
-    //     } else {
-    //         echo 'Horario completo disponible';
-    //     }
-    // }
 }
