@@ -154,11 +154,16 @@ class ReservasController extends Controller
         $reservas = User::join('reservas', 'reservas.id', 'users.id')
                             ->join('ambientes','ambientes.id_ambiente' , 'reservas.id_ambiente')
                             ->where('fecha_para_reserva', '>=', date('Y-m-d'))
-                            ->select('nombre_ambiente','fecha_para_reserva', 'hora_desde', 'hora_hasta' )
+                            // ->select('nombre_ambiente','fecha_para_reserva', 'hora_desde', 'hora_hasta' )
                             ->get();
 
         return view( 'reservas.misReservas', compact('reservas') );
 
+    }
+
+    public function editMiReserva($reserva){
+        return $reserva;
+        // return view( 'reservas.editar' );
     }
 
 }

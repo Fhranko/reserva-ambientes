@@ -15,6 +15,7 @@ class ReservasSeeder extends Seeder
         $faker = Faker::create();
         for ($i=1; $i <= 20; $i++) {
             \DB::table('reservas')->insert(array(
+            'id_reserva' =>$i,
             'id' => $faker->numberBetween($min = 1, $max = 10) ,
             'id_ambiente'=> $faker->numberBetween($min = 1, $max = 5),
             'fecha_para_reserva' => $faker->date($format = 'Y-m-d', $max = 'now'),

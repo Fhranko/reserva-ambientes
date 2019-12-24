@@ -7,7 +7,7 @@
     }}
     @endif
 
-<table class="table table-light">
+<table class="table table-hover table-responsive">
     <thead>
         <tr>
             <th>#</th>

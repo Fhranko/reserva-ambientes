@@ -42,8 +42,6 @@
             </div>
         </div>
     </div>
-    {{-- Verificar la disponobilidad del ambiente --}}
-    {{-- <form action="{{ route('reservas.store') }}" method="POST" > --}}
     <form action="{{ route('reservas.check', $ambiente->id_ambiente) }}" method="post">
         @csrf
         <h2 class="text-center">Reservar en ambiente</h2>
@@ -74,8 +72,5 @@
         }}
         @endif
     </h1>
-    {{-- <form action="{{ route('reservas.check', $ambiente->id_ambiente) }}" method="get">
-        <button type="submit" class="btn btn-success">Verificar Disponibilidad</button>
-    </form> --}}
 </div>
 @endsection

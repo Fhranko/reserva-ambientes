@@ -50,3 +50,4 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/mis-reservas/{usuario}', 'ReservasController@misReservas')->name('reservas.misReservas');
+Route::get('/mi-reserva/{usuario}', 'ReservasController@editMiReserva')->name('reservas.editMiReserva');

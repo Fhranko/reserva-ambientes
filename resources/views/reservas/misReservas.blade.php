@@ -8,6 +8,7 @@
                 <th>Fecha</th>
                 <th>Desde</th>
                 <th>Hasta</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,12 @@
                 <td>{{ $reserva->fecha_para_reserva }}</td>
                 <td>{{ date("h:i", strtotime( $reserva->hora_desde )) }}</td>
                 <td>{{ date("h:i", strtotime( $reserva->hora_hasta )) }}</td>
+                <td>
+                    <a class="btn btn-secondary" href=" {{ route('reservas.editMiReserva', $reserva)}} ">Editar</a>
+                </td>
+                <td>
+                    <button class="btn btn-danger" >Borrar</button>
+                </td>
             </tr>
             @endforeach
         </tbody>
