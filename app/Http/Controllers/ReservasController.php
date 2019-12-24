@@ -161,9 +161,42 @@ class ReservasController extends Controller
 
     }
 
-    public function editMiReserva($reserva){
-        return $reserva;
-        // return view( 'reservas.editar' );
+    public function editMiReserva($idReserva){
+        $reserva = Reserva::where('id_reserva', $idReserva)->first();
+        // return $reserva;
+        return view( 'reservas.editar', compact('reserva') );
+    }
+
+    public function updateMiReserva(Request $request, $idReserva ){
+        $reservas = Reserva::where('id_ambiente', $id)
+                                ->where('fecha_para_reserva', '>=', date('Y-m-d'))
+                                ->whereDate('fecha_para_reserva', $request->fecha)
+                                ->get();
+
+        $carbonMiDesde = New Carbon($request->hora_desde);
+        $carbonMiHasta = New Carbon($request->hora_hasta);
+
+        if ( !sizeof($reservas) == 0) {
+            foreach ($reservas as $reserva) {
+                $carbonDesde = new Carbon($reserva->hora_desde);
+                $carbonHasta = new Carbon($reserva->hora_hasta);
+
+                $resultadoInicio = $carbonMiDesde->addMinute()->isBetween($carbonDesde, $carbonHasta);
+                $resultadoFin = $carbonMiHasta->subMinute()->isBetween($carbonDesde, $carbonHasta);
+
+                if ($resultadoInicio || $resultadoFin) {
+                    return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles');
+                }else {
+                    $datosReserva = request()->except(['_token', '_method']);
+                    User::where('id_reserva', $idReserva)->update($datosReserva);
+                    return back()->with('mensaje', 'Reserva cambiada correctamente');
+                }
+            }
+        }else {
+            $datosReserva = request()->except(['_token', '_method']);
+            User::where('id', $id)->update($datosReserva);
+            return back()->with('mensaje', 'Reserva cambiada correctamente');
+        }
     }
 
 }

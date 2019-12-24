@@ -19,7 +19,7 @@
                 <td>{{ date("h:i", strtotime( $reserva->hora_desde )) }}</td>
                 <td>{{ date("h:i", strtotime( $reserva->hora_hasta )) }}</td>
                 <td>
-                    <a class="btn btn-secondary" href=" {{ route('reservas.editMiReserva', $reserva)}} ">Editar</a>
+                    <a class="btn btn-secondary" href=" {{ route('reservas.editMiReserva', $reserva->id_reserva)}} ">Editar</a>
                 </td>
                 <td>
                     <button class="btn btn-danger" >Borrar</button>
