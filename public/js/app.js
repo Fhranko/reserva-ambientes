@@ -64989,6 +64989,11 @@ if (mm < 10) {
 
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("fecha").setAttribute("min", today);
+window.setTimeout(function () {
+  $(".alert").fadeTo(500, 0).slideUp(500, function () {
+    $(this).remove();
+  });
+}, 2000);
 
 /***/ }),
 

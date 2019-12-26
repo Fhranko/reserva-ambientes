@@ -66,11 +66,10 @@
             <button type="submit" class="btn btn-primary btn-block w-50">Reservar Ambiente</button>
         </div>
     </form>
-    <h1>
-        @if(Session::has('mensaje')){{
-            Session::get('mensaje')
-        }}
-        @endif
-    </h1>
+    @if(Session::has('mensaje'))
+        <div class="alert {{ Session::get('alerta') }} text-center mt-3" role="alert">
+            {{ Session::get('mensaje') }}
+        </div>
+    @endif
 </div>
 @endsection

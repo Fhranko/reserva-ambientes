@@ -22,15 +22,15 @@
                     <a class="btn btn-secondary" href=" {{ route('reservas.editMiReserva', $reserva->id_reserva)}} ">Editar</a>
                 </td>
                 <td>
-                    <button class="btn btn-danger" >Borrar</button>
+                    <form action="{{ route('reservas.destroy', $reserva->id_reserva) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('¿Borrar?');" >Borrar</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    @if(Session::has('mensaje')){{
-        Session::get('mensaje')
-    }}
-    @endif
 </div>
 @endsection

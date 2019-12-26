@@ -99,9 +99,11 @@ class ReservasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idReserva)
     {
-        //
+
+        Reserva::destroy($idReserva);
+        return back();
     }
 
     public function check(Request $request, $id){
@@ -124,7 +126,7 @@ class ReservasController extends Controller
 
 
                 if ($resultadoInicio || $resultadoFin) {
-                    return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles');
+                    return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles')->with('alerta','alert-danger');
                 }else {
                     $reservas = new Reserva;
                     $reservas->id = Auth::user()->id;
@@ -134,7 +136,7 @@ class ReservasController extends Controller
                     $reservas->hora_hasta = $request->hasta;
 
                     $reservas->save();
-                    return back()->with('mensaje', 'Reserva registrada correctamente');
+                    return back()->with('mensaje', 'Reserva registrada correctamente')->with('alerta','alert-success');
                 }
             }
         }else {
@@ -146,7 +148,7 @@ class ReservasController extends Controller
             $reservas->hora_hasta = $request->hasta;
 
             $reservas->save();
-            return back()->with('mensaje', 'Reserva registrada correctamente');
+            return back()->with('mensaje', 'Reserva registrada correctamente')->with('alerta','alert-success');
         }
     }
 
@@ -184,19 +186,19 @@ class ReservasController extends Controller
                 $resultadoFin = $carbonMiHasta->subMinute()->isBetween($carbonDesde, $carbonHasta);
 
                 if ($resultadoInicio || $resultadoFin) {
-                    return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles');
+                    return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles')->with('alerta','alert-danger');
                 }else {
                     $datosReserva = request()->except(['_token', '_method']);
                     $datosModificar = Reserva::where('id_reserva', $id)->first();
                     Reserva::where('id_reserva', $id)->update($datosReserva);
-                    return back()->with('mensaje', 'Reserva cambiada correctamente');
+                    return back()->with('mensaje', 'Reserva cambiada correctamente')->with('alerta','alert-success');
                 }
             }
         }else {
             $datosReserva = request()->except(['_token', '_method']);
             $datosModificar = Reserva::where('id_reserva', $id)->first();
             Reserva::where('id_reserva', $id)->update($datosReserva);
-            return back()->with('mensaje', 'Reserva cambiada correctamente');
+            return back()->with('mensaje', 'Reserva cambiada correctamente')->with('alerta','alert-success');
         }
 
     }
