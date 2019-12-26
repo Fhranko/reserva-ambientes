@@ -163,11 +163,10 @@ class ReservasController extends Controller
 
     public function editMiReserva($idReserva){
         $reserva = Reserva::where('id_reserva', $idReserva)->first();
-        // return $reserva;
-        return view( 'reservas.editar', compact('reserva') );
+        return view( 'reservas.editar', compact('reserva'));
     }
 
-    public function updateMiReserva(Request $request, $idReserva ){
+    public function updateMiReserva(Request $request, $id){
         $reservas = Reserva::where('id_ambiente', $id)
                                 ->where('fecha_para_reserva', '>=', date('Y-m-d'))
                                 ->whereDate('fecha_para_reserva', $request->fecha)
@@ -188,15 +187,18 @@ class ReservasController extends Controller
                     return back()->with('mensaje', 'Los horarios seleccionados no estan disponibles');
                 }else {
                     $datosReserva = request()->except(['_token', '_method']);
-                    User::where('id_reserva', $idReserva)->update($datosReserva);
+                    $datosModificar = Reserva::where('id_reserva', $id)->first();
+                    Reserva::where('id_reserva', $id)->update($datosReserva);
                     return back()->with('mensaje', 'Reserva cambiada correctamente');
                 }
             }
         }else {
             $datosReserva = request()->except(['_token', '_method']);
-            User::where('id', $id)->update($datosReserva);
+            $datosModificar = Reserva::where('id_reserva', $id)->first();
+            Reserva::where('id_reserva', $id)->update($datosReserva);
             return back()->with('mensaje', 'Reserva cambiada correctamente');
         }
+
     }
 
 }

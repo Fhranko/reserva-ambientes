@@ -28,5 +28,9 @@
             @endforeach
         </tbody>
     </table>
+    @if(Session::has('mensaje')){{
+        Session::get('mensaje')
+    }}
+    @endif
 </div>
 @endsection
