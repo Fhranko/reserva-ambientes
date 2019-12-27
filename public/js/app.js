@@ -64964,6 +64964,8 @@ $(document).ready(function () {
       search: "Buscar: ",
       info: "Mostrando del _START_ al _END_ de _TOTAL_ registros",
       lengthMenu: "Mostrando _MENU_ registros",
+      zeroRecords: "No hay reservas almacenadas",
+      infoEmpty: "No hay reservas para mostrar",
       paginate: {
         first: "Primero",
         last: "Ultimo",

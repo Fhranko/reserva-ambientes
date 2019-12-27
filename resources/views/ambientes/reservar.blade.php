@@ -15,11 +15,12 @@
                     <p class="card-text"><small class="text-muted">Capacidad del ambiente: {{ $ambiente->capacidad_ambiente }} personas. </small></p>
                     <h5>Reservas actuales: </h5>
                     @if (!sizeof($reservas) == 0)
+                    <div class="custom-table">
                         <table id="tabla-datos" class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>Reservado por</th>
-                                    <th>Fecha de la reserva</th>
+                                    <th>Fecha de reserva</th>
                                     <th>Desde</th>
                                     <th>Hasta</th>
                                 </tr>
@@ -35,6 +36,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
                     @else
                         <h2 class=" alert alert-info text-center" >No hay reservas aún. ¡Tienes todos los horarios disponibles!</h2>
                     @endif
