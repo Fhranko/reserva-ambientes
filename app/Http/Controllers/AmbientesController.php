@@ -24,6 +24,10 @@ class AmbientesController extends Controller
         $reservas = Reserva::get();
         $ambientes = Ambiente::get();
         return view('ambientes.mostrar')->with('ambientes', $ambientes);
+
+
+        /* $ambiente = Ambiente::where('id_ambiente', 10)->first();
+        return $ambiente; */
     }
 
     /**
@@ -44,14 +48,25 @@ class AmbientesController extends Controller
      */
     public function store(Request $request)
     {
+
         $ambiente = new Ambiente;
         $ambiente->nombre_ambiente = $request->input('nombre_ambiente');
         $ambiente->oficina_ambiente = $request->input('oficina_ambiente');
         $ambiente->capacidad_ambiente = $request->input('capacidad_ambiente');
         $ambiente->descripcion_ambiente = $request->input('descripcion_ambiente');
-        $ambiente->imagen_ambiente = NULL;
+        if ($request->imagen !== Null) {
+            $imageName = time().'.'.$request->imagen->extension();
+            $request->imagen->move(public_path('images'), $imageName);
+            $ambiente->imagen_ambiente = $imageName;
+        }else {
+            $ambiente->imagen_ambiente = NULL;
+        }
         echo $ambiente->save();
         return redirect()->route('home');
+
+
+
+        // echo $request->file('imagen')->store('upload');
     }
 
     /**

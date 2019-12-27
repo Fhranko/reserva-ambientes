@@ -6,7 +6,11 @@
         @foreach ($ambientes as $ambiente)
             <div class="col-sm-4 mt-3">
                 <div class="card">
-                <img class="card-img-top" src="{{ asset('/images/default-image.jpg') }}" alt="Card image cap">
+                @if ($ambiente->imagen_ambiente !== NULL)
+                    <img class="card-img-top" src="/images/{{$ambiente->imagen_ambiente}}" alt="Card image cap">
+                @else
+                    <img class="card-img-top" src="{{ asset('/images/default-image.jpg') }}" alt="Card image cap">
+                @endif
                     <div class="card-body">
                         <h4 class="card-title">{{ $ambiente->nombre_ambiente }}</h4>
                         <p class="card-text">

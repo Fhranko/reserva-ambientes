@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="imagen">Suba una imagen para el ambiente</label>
-            <input type="file" name="imagen_ambiente" class="form-control" id="imagen" placeholder="">
+            <input type="file" name="imagen" class="form-control" id="imagen" placeholder="">
         </div>
         <button type="submit" class="btn btn-primary float-right mx-1">Crear</button>
         <a href="{{ url('/home') }}">
