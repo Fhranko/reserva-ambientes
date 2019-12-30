@@ -6,7 +6,12 @@
     <div class="card mb-3">
         <div class="row no-gutters">
             <div class="col-md-4">
+                @if ($ambiente->imagen_ambiente == NULL)
                 <img src="{{ asset('/images/default-image.jpg') }}" class="card-img" alt="imagen del ambiente a reservar">
+                @else
+                <img src="/images/{{ $ambiente->imagen_ambiente }} {{-- {{ asset('/images/default-image.jpg') }} --}}" class="card-img" alt="imagen del ambiente a reservar">
+                @endif
+
             </div>
             <div class="col-md-8">
                 <div class="card-body">

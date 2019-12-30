@@ -53,4 +53,4 @@ Route::get('/mis-reservas/{usuario}', 'ReservasController@misReservas')->name('r
 Route::get('/mi-reserva/{id_reserva}', 'ReservasController@editMiReserva')->name('reservas.editMiReserva');
 Route::match(['put', 'patch'], 'mi-reserva/{id_reserva}', 'ReservasController@updateMiReserva')->name('reservas.updateMiReserva');
 Route::delete('reserva/{id_reserva}', 'ReservasController@destroy')->name('reservas.destroy');
-Route::get('usuario/{id}/editar', 'UsuariosController@editMe')->name('usuario.editMe');
+Route::get('usuario/{id}/editar', 'UsuariosController@editMe')->name('usuario.editMe')->middleware('check.id');
