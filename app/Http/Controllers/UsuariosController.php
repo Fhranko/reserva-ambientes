@@ -83,9 +83,15 @@ class UsuariosController extends Controller
      * @param  \App\usuarios  $usuarios
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id)    {
         User::destroy($id);
         return redirect('usuarios');
+    }
+
+    public function editMe($id){
+        $usuario = User::where('id', $id)->first();
+        return view('usuarios.editMe', compact('usuario'));
+
+        // return $usuario;
     }
 }
