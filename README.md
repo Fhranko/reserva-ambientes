@@ -13,12 +13,27 @@ Sistema para gestionar los ambientes con los que se cuenta en las oficinas de la
 7. Ver el proyecto en `http://127.0.0.1:8000/`.
 8. Para ingresar puede usar uno de los usuarios creados en las migraciones, o crear su propio usuario en la seccion de login.
 
+### Login
 ![](resources/screencaptures/screencapture-login.png)
+
+### Home
 ![](resources/screencaptures/screencapture-home.png)
+
+### Home responsive
 ![](resources/screencaptures/screencapture-home-responsive.png)
+
+### Ambiente 1
 ![](resources/screencaptures/screencapture-ambiente1.png)
+
+### Ambiente 2
 ![](resources/screencaptures/screencapture-ambiente2.png)
+
+### Ambiente Responsive
 ![](resources/screencaptures/screencapture-ambiente-responsive.png)
+
+### Historial de reservas
 ![](resources/screencaptures/screencapture-historial.png)
+
+### Usuarios registrados
 ![](resources/screencaptures/screencapture-usuarios.png)
 
