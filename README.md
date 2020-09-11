@@ -8,10 +8,13 @@ Sistema para gestionar los ambientes con los que se cuenta en las oficinas de la
 2. Importante tener instalado composer para poder instalar las dependencias `https://getcomposer.org/`.
 3. Montar el proyecto en el servidor local de su preferencia Xampp, Lampp, etc.
 4. Instalar las dependencias del proyecto con `composer install`.
-5. Para probar la App instalar las migraciones y seeds programadas con `php artisan --seed`.
-6. Iniciar el proyecto en modo desarrollo con `php artisan serve`.
-7. Ver el proyecto en `http://127.0.0.1:8000/`.
-8. Para ingresar puede usar uno de los usuarios creados en las migraciones, o crear su propio usuario en la seccion de login.
+5. Crear una base de datos con el nombre `laravel`.
+6. Para probar la App instalar las migraciones programadas con `php artisan migrate`.
+7. Para probar la App instalar las seeds programadas con `php artisan db:seed`.
+8. Generar una clave de proyecto con `php key:generate`.
+9. Iniciar el proyecto en modo desarrollo con `php artisan serve`.
+10. Ver el proyecto en `http://127.0.0.1:8000/`.
+11. Para ingresar puede usar uno de los usuarios creados en las migraciones, o crear su propio usuario en la seccion de login.
 
 ### Login
 ![](resources/screencaptures/screencapture-login.png)
